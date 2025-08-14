@@ -1,7 +1,6 @@
 import numpy as np
 from PIL import Image, ImageDraw
 import random
-import os
 
 def create_maze_from_image_with_start_goal(image_path, maze_width, maze_height, threshold=128):
     
@@ -50,9 +49,7 @@ def create_maze_from_image_with_start_goal(image_path, maze_width, maze_height, 
             if allowed_area[img_y, img_x]:
                 path_coords.append((r, c))
 
-    if not path_coords:
-        print("エラー: 有効な経路が見つかりませんでした。")
-        return None
+  
 
     start_point = random.choice(path_coords)
     
@@ -84,7 +81,6 @@ if __name__ == '__main__':
     MAZE_HEIGHT = 50
     BINARY_THRESHOLD = 200
 
-    print("スタートとゴール付きの迷路を生成しています...")
     generated_maze = create_maze_from_image_with_start_goal(
         image_path=INPUT_IMAGE_PATH, 
         maze_width=MAZE_WIDTH, 
@@ -94,4 +90,3 @@ if __name__ == '__main__':
 
     if generated_maze:
         generated_maze.save(OUTPUT_MAZE_PATH)
-        print(f"🎉 迷路が完成しました！ '{OUTPUT_MAZE_PATH}' として保存しました。")
